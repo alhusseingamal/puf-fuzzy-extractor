@@ -80,6 +80,15 @@ make prog
 ```bash
 python3 core/get_puf_from_device.py 0
 ```
+When the extraction script executes, it triggers a precise sequence between the host PC and the FPGA's RTL logic:
+
+- The UART Trigger: The Python script opens a serial connection (115200 baud) and transmits a trigger byte ('s') to the FPGA.  
+
+- RTL State Machine Activation: The Verilog UART Receiver decodes the byte. The custom PUF Finite State Machine (FSM) detects the rx_ready flag and transitions out of its idle state.  
+
+- Synchronous Memory Harvesting: The FSM begins iterating through the BRAM addresses. It enforces a strict 1-cycle memory wait state to respect the synchronous read latency of the Lattice SB_RAM40_4K primitives, ensuring no stale data is captured.  
+
+- Host Transmission: As each byte of physical entropy is fetched, the FSM polls the uart_tx_ready flag and pushes the data to the UART Transmitter. The Python script catches this continuous stream, reconstructs the 16KB of entropy, and formats it into 512 independent 256-bit responses.  
 
 ### Phase 2: Statistical Characterization
 

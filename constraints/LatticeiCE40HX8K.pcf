@@ -1,0 +1,35 @@
+# ##############################################################################
+
+# iCEcube PCF
+
+# Version:            2017.08.27940
+
+# File Generated:     Apr 24 2018 15:49:47
+
+# Family & Device:    iCE40HX8K
+
+# Package:            CT256
+
+# ##############################################################################
+
+###IOSet List 12
+set_io CLK J3
+set_io LED[0] B5
+set_io LED[1] B4
+set_io LED[2] A2
+set_io LED[3] A1
+set_io LED[4] C5
+set_io LED[5] C4
+set_io LED[6] B3
+set_io LED[7] C3
+set_io UART_RX B10
+set_io UART_TX B12
+
+# can be used to reset from ftdi RTS
+set_io RST B13
+
+# ftdi CTS (to ftdi)
+# A15
+
+# ftdi DTR (from ftdi)
+# A16

@@ -1,0 +1,14 @@
+# Python
+venv/
+__pycache__/
+
+# Yosys/NextPNR Build Artifacts
+*.bin
+*.asc
+*.json
+*.log
+*.rpt
+*.blif
+
+# drafts
+notes.md
